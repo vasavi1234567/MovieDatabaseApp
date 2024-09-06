@@ -1,0 +1,16 @@
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+.top-rated-movies-container {
+  list-style-type: none;
+  display: grid;
+}
+.movies-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

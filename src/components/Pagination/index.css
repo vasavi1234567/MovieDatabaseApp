@@ -1,0 +1,25 @@
+.pagination-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-self: center;
+  margin-top: 70vh;
+}
+.control-button {
+  padding: 10px;
+  background-color: #fff;
+  font-family: 'Roboto';
+  border: none;
+  font-size: 20px;
+}
+.page-no {
+  font-size: 20px;
+}
+@media screen and (max-width: 768px) {
+  .control-button {
+    font-size: 15px;
+  }
+  .page-no {
+    font-size: 15px;
+  }
+}
