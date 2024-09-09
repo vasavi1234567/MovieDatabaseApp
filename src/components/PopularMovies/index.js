@@ -1,7 +1,7 @@
 import React from 'react'
 import Loader from 'react-loader-spinner'
 
-import Movie from '../Movie'
+import MovieCard from '../MovieCard'
 import Navbar from '../Navbar'
 import Pagination from '../Pagination'
 
@@ -10,7 +10,7 @@ import './index.css'
 class PopularMovies extends React.Component {
   state = {
     isLoading: true,
-    popularMovies: {},
+    popularMovie: {},
   }
 
   componentDidMount() {
@@ -29,35 +29,38 @@ class PopularMovies extends React.Component {
   })
 
   getPopularMovies = async (page = 1) => {
-    const API_KEY = ''
+    const API_KEY = '3446093c095453b151980f49a9f3576d'
     const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`
     const responseApi = await fetch(apiUrl)
     const data = await responseApi.json()
     const newData = this.getUpdatedData(data)
-    this.setState({isLoading: false, popularMovies: newData})
+    this.setState({
+      isLoading: false,
+      popularMovie: newData,
+    })
   }
 
   renderLoadingView = () => (
     <div className="loader-container">
-      <Loader type="TailSpin" color="#2851a4" />
+      <Loader type="TailSpin" color="#2851a4" height={60} width={60} />
     </div>
   )
 
   renderPopularMovies = () => {
-    const {popularMovies} = this.state
-    const {results} = popularMovies
+    const {popularMovie} = this.state
+    const {results = []} = popularMovie
 
     return (
       <ul className="popular-movies-container">
         {results.map(movie => (
-          <Movie key={movie.id} movieDetails={movie} />
+          <MovieCard key={movie.id} movieDetails={movie} />
         ))}
       </ul>
     )
   }
 
   render() {
-    const {isLoading, popularMovies} = this.state
+    const {isLoading, popularMovie} = this.state
 
     return (
       <>
@@ -66,7 +69,7 @@ class PopularMovies extends React.Component {
           {isLoading ? this.renderLoadingView() : this.renderPopularMovies()}
         </div>
         <Pagination
-          totalPages={popularMovies.totalPages}
+          totalPages={popularMovie.totalPages}
           apiCallback={this.getPopularMovies}
         />
       </>

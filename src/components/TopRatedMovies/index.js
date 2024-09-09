@@ -1,7 +1,7 @@
 import React from 'react'
 import Loader from 'react-loader-spinner'
 
-import Movie from '../Movie'
+import MovieCard from '../MovieCard'
 import Navbar from '../Navbar'
 import Pagination from '../Pagination'
 
@@ -10,7 +10,10 @@ import './index.css'
 class TopRatedMovies extends React.Component {
   state = {
     isLoading: true,
-    topRatedMovies: {},
+    topRatedMovie: {
+      totalPages: 0,
+      results: [],
+    },
   }
 
   componentDidMount() {
@@ -29,35 +32,35 @@ class TopRatedMovies extends React.Component {
   })
 
   getTopRatedMovies = async (page = 1) => {
-    const API_KEY = ''
+    const API_KEY = '3446093c095453b151980f49a9f3576d'
     const apiUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=${page}`
     const responseApi = await fetch(apiUrl)
     const data = await responseApi.json()
     const newData = this.getUpdatedData(data)
-    this.setState({isLoading: false, topRatedMovies: newData})
+    this.setState({isLoading: false, topRatedMovie: newData})
   }
 
   renderLoadingView = () => (
     <div className="loader-container">
-      <Loader type="TailSpin" color="#2851a4" />
+      <Loader type="TailSpin" color="#2851a4" height={60} width={60} />
     </div>
   )
 
   renderPopularMovies = () => {
-    const {topRatedMovies} = this.state
-    const {results} = topRatedMovies
+    const {topRatedMovie} = this.state
+    const {results = []} = topRatedMovie
 
     return (
       <ul className="top-rated-movies-container">
         {results.map(movie => (
-          <Movie key={movie.id} movieDetails={movie} />
+          <MovieCard key={movie.id} movieDetails={movie} />
         ))}
       </ul>
     )
   }
 
   render() {
-    const {isLoading, topRatedMovies} = this.state
+    const {isLoading, topRatedMovie} = this.state
 
     return (
       <>
@@ -66,10 +69,12 @@ class TopRatedMovies extends React.Component {
         <div className="movies-container">
           {isLoading ? this.renderLoadingView() : this.renderPopularMovies()}
         </div>
-        <Pagination
-          totalPages={topRatedMovies.totalPages}
-          apiCallback={this.getTopRatedMovies}
-        />
+        {topRatedMovie.totalPages && (
+          <Pagination
+            totalPages={topRatedMovie.totalPages}
+            apiCallback={this.getTopRatedMovies}
+          />
+        )}
       </>
     )
   }

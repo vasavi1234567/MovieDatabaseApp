@@ -45,7 +45,7 @@ class Pagination extends React.Component {
 
   render() {
     const {pageNo} = this.state
-    // const {totalPages} = this.props
+    const {totalPages} = this.props
 
     return (
       <div className="pagination-container">
@@ -53,20 +53,28 @@ class Pagination extends React.Component {
           className="control-button"
           type="button"
           onClick={this.onPreviousPage}
+          disabled={pageNo === 1}
         >
           Prev
         </button>
-        <p className="page-no">{pageNo}</p>
+        <p className="page-no">
+          Page {pageNo} of {totalPages}
+        </p>
         <button
           className="control-button"
           type="button"
           onClick={this.onNextPage}
+          disabled={pageNo === totalPages}
         >
           Next
         </button>
       </div>
     )
   }
+}
+
+Pagination.defaultProps = {
+  totalPages: 1,
 }
 
 export default Pagination

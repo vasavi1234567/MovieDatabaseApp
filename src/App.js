@@ -10,7 +10,7 @@ import MoviesContext from './context/MoviesContext'
 
 import './App.css'
 
-const API_KEY = ''
+const API_KEY = '3446093c095453b151980f49a9f3576d'
 
 // write your code here
 const App = () => {
@@ -21,7 +21,7 @@ const App = () => {
   const onChangeInput = text => setInput(text)
 
   const getUpdatedData = responseData => ({
-    total_pages: responseData.total_pages,
+    totalPages: responseData.total_pages,
     totalResults: responseData.total_results,
     results: responseData.results.map(eachMovie => ({
       id: eachMovie.id,
@@ -53,9 +53,9 @@ const App = () => {
       <div className="app d-flex flex-column">
         <Switch>
           <Route exact path="/" component={PopularMovies} />
-          <Route exact path="/search-movies" component={SearchedMovies} />
-          <Route exact path="/top-rated-movies" component={TopRatedMovies} />
-          <Route exact path="/upcoming-movies" component={UpcomingMovies} />
+          <Route exact path="/top-rated" component={TopRatedMovies} />
+          <Route exact path="/upcoming" component={UpcomingMovies} />
+          <Route exact path="/search" component={SearchedMovies} />
         </Switch>
       </div>
     </MoviesContext.Provider>

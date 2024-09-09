@@ -1,7 +1,7 @@
 import React from 'react'
 import Loader from 'react-loader-spinner'
 
-import Movie from '../Movie'
+import MovieCard from '../MovieCard'
 import Navbar from '../Navbar'
 import Pagination from '../Pagination'
 
@@ -10,7 +10,7 @@ import './index.css'
 class UpcomingMovies extends React.Component {
   state = {
     isLoading: true,
-    upcomingMovies: {},
+    upcomingMovie: {},
   }
 
   componentDidMount() {
@@ -29,35 +29,35 @@ class UpcomingMovies extends React.Component {
   })
 
   getUpcomingMovies = async (page = 1) => {
-    const API_KEY = ''
+    const API_KEY = '3446093c095453b151980f49a9f3576d'
     const apiUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=${page}`
     const responseApi = await fetch(apiUrl)
     const data = await responseApi.json()
     const newData = this.getUpdatedData(data)
-    this.setState({isLoading: false, upcomingMovies: newData})
+    this.setState({isLoading: false, upcomingMovie: newData})
   }
 
   renderLoadingView = () => (
     <div className="loader-container">
-      <Loader type="TailSpin" color="#2851a4" />
+      <Loader type="TailSpin" color="#2851a4" height={60} width={60} />
     </div>
   )
 
   renderPopularMovies = () => {
-    const {upcomingMovies} = this.state
-    const {results} = upcomingMovies
+    const {upcomingMovie} = this.state
+    const {results = []} = upcomingMovie
 
     return (
       <ul className="upcoming-movies-container">
         {results.map(movie => (
-          <Movie key={movie.id} movieDetails={movie} />
+          <MovieCard key={movie.id} movieDetails={movie} />
         ))}
       </ul>
     )
   }
 
   render() {
-    const {isLoading, upcomingMovies} = this.state
+    const {isLoading, upcomingMovie} = this.state
 
     return (
       <>
@@ -66,7 +66,7 @@ class UpcomingMovies extends React.Component {
           {isLoading ? this.renderLoadingView() : this.renderPopularMovies()}
         </div>
         <Pagination
-          totalPages={upcomingMovies.totalPages}
+          totalPages={upcomingMovie.totalPages}
           apiCallback={this.getUpcomingMovies}
         />
       </>

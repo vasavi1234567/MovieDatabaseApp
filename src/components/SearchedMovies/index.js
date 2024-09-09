@@ -1,6 +1,6 @@
 import Loader from 'react-loader-spinner'
 
-import Movie from '../Movie'
+import MovieCard from '../MovieCard'
 import Navbar from '../Navbar'
 import Pagination from '../Pagination'
 
@@ -17,7 +17,7 @@ const SearchedMovies = () => {
   )
 
   const renderMovies = response => {
-    const {results} = response
+    const {results = []} = response
 
     if (!results.length) {
       return renderEmptyView()
@@ -25,7 +25,7 @@ const SearchedMovies = () => {
     return (
       <ul>
         {results.map(movie => (
-          <Movie key={movie.id} movieDetails={movie} />
+          <MovieCard key={movie.id} movieDetails={movie} />
         ))}
       </ul>
     )

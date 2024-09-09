@@ -31,6 +31,7 @@ const Navbar = props => {
               className="search-button"
               type="button"
               onClick={onSearchHandler}
+              aria-label="Search for movies"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -63,12 +64,12 @@ const Navbar = props => {
             </Link>
           </li>
           <li className="list-item">
-            <Link className="link" to="/top-rated-movies">
+            <Link className="link" to="/top-rated">
               Top Rated
             </Link>
           </li>
           <li className="list-item">
-            <Link className="link" to="/upcoming-movies">
+            <Link className="link" to="/upcoming">
               Upcoming
             </Link>
           </li>

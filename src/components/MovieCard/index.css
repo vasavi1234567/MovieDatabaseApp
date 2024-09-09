@@ -1,3 +1,11 @@
+.movie-container {
+  width: 85vw;
+  padding-left: 0;
+  margin-bottom: 35px;
+}
+.movie-image {
+  width: 85vw;
+}
 .movie {
   display: flex;
   flex-direction: column;
@@ -35,4 +43,13 @@
   .movie {
     flex-grow: 1;
   }
+}
+.view-details-button {
+  background-color: #0066ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: 'Roboto';
+  font-size: 15px;
 }
