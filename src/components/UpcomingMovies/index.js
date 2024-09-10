@@ -7,6 +7,10 @@ import Pagination from '../Pagination'
 
 import './index.css'
 
+require('dotenv').config()
+
+const apikey = process.env.API_KEY
+
 class UpcomingMovies extends React.Component {
   state = {
     isLoading: true,
@@ -29,7 +33,7 @@ class UpcomingMovies extends React.Component {
   })
 
   getUpcomingMovies = async (page = 1) => {
-    const API_KEY = '3446093c095453b151980f49a9f3576d'
+    const API_KEY = apikey
     const apiUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=${page}`
     const responseApi = await fetch(apiUrl)
     const data = await responseApi.json()

@@ -10,7 +10,11 @@ import MoviesContext from './context/MoviesContext'
 
 import './App.css'
 
-const API_KEY = '3446093c095453b151980f49a9f3576d'
+require('dotenv').config()
+
+const apikey = process.env.API_KEY
+
+const API_KEY = apikey
 
 // write your code here
 const App = () => {

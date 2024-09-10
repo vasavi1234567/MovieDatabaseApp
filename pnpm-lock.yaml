@@ -3,6 +3,7 @@ dependencies:
   '@testing-library/react': 11.2.5_react-dom@17.0.1+react@17.0.1
   '@testing-library/user-event': 12.6.2
   chalk: 4.1.0
+  dotenv: 16.4.5
   react: 17.0.1
   react-dom: 17.0.1_react@17.0.1
   react-loader-spinner: 4.0.0_react-dom@17.0.1+react@17.0.1
@@ -6217,6 +6218,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA==
+  /dotenv/16.4.5:
+    dev: false
+    engines:
+      node: '>=12'
+    resolution:
+      integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==
   /dotenv/8.2.0:
     dev: true
     engines:
@@ -14747,6 +14754,7 @@ specifiers:
   '@testing-library/react': 11.2.5
   '@testing-library/user-event': 12.6.2
   chalk: 4.1.0
+  dotenv: 16.4.5
   eslint-config-airbnb: 18.2.1
   eslint-config-prettier: 8.1.0
   eslint-plugin-prettier: 3.3.1
